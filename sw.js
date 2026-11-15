@@ -1,5 +1,5 @@
 // Garde le hub sur l'appareil pour l'ouvrir sans réseau.
-const C = "hub-maison-f0d0c9e8a2";
+const C = "hub-maison-5ff0d53c80";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-180.png"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(C).then((c) => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== C && k.startsWith("hub-maison-")).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
